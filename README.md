@@ -9,4 +9,8 @@ The AVD messaging process logs an event to the RemoteDesktopServices Event Log. 
 
 **SelfDeleteADObjectWithBind.ps1**  
 
-Hydra has a built-in script to automatically delete the Entra object of an account, but NOT the on-prem AD object. Although the default password reset/sync route is preferrable for AD deployments, this script can be handy for deleting all session hosts in a pool for a mass renames or deletions, for example. This uses the Hydra_ServiceAccount_PSC PSCredential object, so ensure that a service account is properly defined for the host pool, the script has the service account option enabled, and the account has access to delete AD computer accounts. 
+Hydra has a built-in script to automatically delete the Entra object of an account, but NOT the on-prem AD object. Although the default password reset/sync route is preferrable for AD deployments, this script can be handy for deleting all session hosts in a pool for a mass renames or deletions, for example. This uses the Hydra_ServiceAccount_PSC PSCredential object, so ensure that a service account is properly defined for the host pool, the script has the service account option enabled, and the account has access to delete AD computer accounts.  
+
+**ConvertHostPoolForTesting.ps1**   
+
+This script can convert an AVD Host Pool (or really any device) to an automated testing host for use with Login Enterprise. This is useful to combine with Hydra's capability of running scripts at deployment time within the New Session Hosts tab. Simply set the $applianceFQDN variable to your LE appliance FQDN. The script will download the EXE and automatically place the shortcut in the ALLUSERSPROFILE startup directory. 
