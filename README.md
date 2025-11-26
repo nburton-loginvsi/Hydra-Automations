@@ -5,6 +5,10 @@ Scripts and automations helpful in Hydra deployments
 
 **SessionConsolidationHelper.ps1**
 
+NOTE THAT THIS FUNCTIONALITY HAS BEEN BUILT INTO HYDRA 2.0!
+
+See here for details: https://docs.loginvsi.com/hydra/2.0.0/autoscaling#id-(2.0.0)Autoscaling-SessionConsolidation
+
 This script is handy in conjunction with Hydra's Session Consolidation feature. Because Hydra only sends messages during the consolidation process, it's possible that users just ignore the message and don't logoff like we nicely ask them to. This helper can be used as a scheduled script at the beginning of the consolidation process (when the last schedule ends) to forcefully logoff users after X amount of time to help move the consolidation process quicker and save on Azure spend.   
 
 The AVD messaging process logs an event to the RemoteDesktopServices Event Log. It shows the exact header and body of the message, so this script runs for X amount of time in the background under SYSTEM. If it sees the content in the SearchTerms variable, it triggers a logoff for all users in X amount of seconds.  
