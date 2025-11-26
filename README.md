@@ -20,3 +20,9 @@ Hydra has a built-in script to automatically delete the Entra object of an accou
 **ConvertHostPoolForTesting.ps1**   
 
 This script can convert an AVD Host Pool (or really any device) to an automated testing host for use with Login Enterprise. This is useful to combine with Hydra's capability of running scripts at deployment time within the New Session Hosts tab. Simply set the $applianceFQDN variable to your LE appliance FQDN. The script will download the EXE and automatically place the shortcut in the ALLUSERSPROFILE startup directory. 
+
+---
+
+**AppScripts directory**
+
+Non-Hydra-specific app scripts that can be used by Hydra's scripting engine for deployment/imaging automations, such as setting the fallback mechanism for Zoom. 
