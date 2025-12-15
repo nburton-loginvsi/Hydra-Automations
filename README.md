@@ -37,4 +37,4 @@ Non-Hydra-specific app scripts that can be used by Hydra's scripting engine for 
 
 Query against the SessionHosts table in the Hydra DB to get a list of all personal host pool power-on schedules set by the end users.
 
-<img width="1181" height="244" alt="image" src="https://github.com/user-attachments/assets/f0ce064d-25eb-4b10-ab43-d1c386e71551" />
+<img width="1181" height="194" alt="image" src="https://github.com/user-attachments/assets/697644e5-660e-47f5-a134-b9dc1c18d3db" />
