@@ -30,3 +30,11 @@ This script can convert an AVD Host Pool (or really any device) to an automated 
 **AppScripts directory**
 
 Non-Hydra-specific app scripts that can be used by Hydra's scripting engine for deployment/imaging automations, such as setting the fallback mechanism for Zoom. 
+
+---
+
+**Get-PersonalPowerOnSchedules.sql**
+
+Query against the SessionHosts table in the Hydra DB to get a list of all personal host pool power-on schedules set by the end users.
+
+<img width="1181" height="244" alt="image" src="https://github.com/user-attachments/assets/f0ce064d-25eb-4b10-ab43-d1c386e71551" />
