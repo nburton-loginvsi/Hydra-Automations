@@ -38,3 +38,12 @@ Non-Hydra-specific app scripts that can be used by Hydra's scripting engine for 
 Query against the SessionHosts table in the Hydra DB to get a list of all personal host pool power-on schedules set by the end users.
 
 <img width="1181" height="194" alt="image" src="https://github.com/user-attachments/assets/697644e5-660e-47f5-a134-b9dc1c18d3db" />
+
+---
+
+**Add-HydraTenantServicePrincipal.ps1**
+
+Adds the resource/tenant service principal in Hydra with required Entra and Azure permissions. Example usage noted in the script.
+
+<img width="1888" height="894" alt="image" src="https://github.com/user-attachments/assets/44a367b5-dd1a-4c01-ab91-97d4082818a2" />
+
