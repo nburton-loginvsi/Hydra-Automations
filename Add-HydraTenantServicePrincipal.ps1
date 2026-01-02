@@ -3,6 +3,8 @@
 # Example Usage for RG: Add-HydraTenantServicePrincipal -tenantId 1234-1234-1234-1234 -ScopeType ResourceGroup -SubscriptionId 1234-1234-1234-1234 -ResourceGroupName "RGName" -ApplyConstrainedRoleAssignmentCondition -ConfigureGraphApplicationPermissions -ServicePrincipalDisplayName "svc-Hydra"
 # Example Usage for sub: Add-HydraTenantServicePrincipal -tenantId 1234-1234-1234-1234 -ScopeType Subscription -SubscriptionId 1234-1234-1234-1234 -ApplyConstrainedRoleAssignmentCondition -ConfigureGraphApplicationPermissions -ServicePrincipalDisplayName "svc-Hydra"
 
+# Requires Az.Accounts, Az.Resources, Microsoft.Graph.Authentication, and Microsoft.Graph.Applications
+# Run Install-Module Az.Accounts,Az.Resources,Microsoft.Graph.Authentication,Microsoft.Graph.Applications -Scope CurrentUser
 # WARNING IF USING PS 5.1 - there is currently a known bug with the Microsoft.Graph.Authentication module v2.34. Rollback to 2.33 if you get a GetTokenAsync error.
 # See here for more details: https://github.com/microsoftgraph/msgraph-sdk-powershell/issues/3479
 
@@ -447,5 +449,6 @@ if ($ConfigureGraphApplicationPermissions) {
     Write-Section "Graph application permissions"
     Write-Host "Skipped. Re-run with -ConfigureGraphApplicationPermissions if you want the Graph app perms + admin consent set automatically." -ForegroundColor Yellow
 }
+
 
 Write-Section "Done"
