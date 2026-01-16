@@ -283,7 +283,8 @@ function Ensure-GraphAppPermissionsAndConsent([string]$tenantId, [string]$appId)
     $needed = @(
         "Group.Read.All",
         "User.Read.All",
-        "CloudPC.ReadWrite.All"
+        "CloudPC.ReadWrite.All",
+        "DeviceManagementRBAC.Read.All"
     )
 
     $appRoleIds = @()
@@ -452,3 +453,4 @@ if ($ConfigureGraphApplicationPermissions) {
 
 
 Write-Section "Done"
+
