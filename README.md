@@ -47,3 +47,8 @@ Adds the resource/tenant service principal in Hydra with required Entra and Azur
 
 <img width="1888" height="894" alt="image" src="https://github.com/user-attachments/assets/44a367b5-dd1a-4c01-ab91-97d4082818a2" />
 
+---
+
+**AppMaskingSync.ps1**
+
+Point it to a https location with your masking rules and assignments inside a .zip. Use this in a Hydra script/collection to automatically keep your masking rules and assignments in sync with your images and hosts. SMB option coming soon.
