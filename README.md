@@ -52,3 +52,9 @@ Adds the resource/tenant service principal in Hydra with required Entra and Azur
 **AppMaskingSync.ps1**
 
 Point it to a https location with your masking rules and assignments inside a .zip. Use this in a Hydra script/collection to automatically keep your masking rules and assignments in sync with your images and hosts. SMB option coming soon.
+
+---
+
+**Add-HydraMachineToGroups.ps1**
+
+Utilize the Host Pool service account to add Hydra machines to a list of groups. Helpful when a machine gets deployed to automatically add to groups in the New Session Host Rollout config.
