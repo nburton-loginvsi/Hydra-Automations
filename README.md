@@ -58,3 +58,9 @@ Point it to a https location with your masking rules and assignments inside a .z
 **Add-HydraMachineToGroups.ps1**
 
 Utilize the Host Pool service account to add Hydra machines to a list of groups. Helpful when a machine gets deployed to automatically add to groups in the New Session Host Rollout config.
+
+---
+
+**Cleanup-FSLogixProfiles.ps1**
+
+Used for cleaning up FSLogix profiles. Follow the instructions within the PS1. Can be used across multiple shares and utilize the Hydra service account. The main modes are report only, delete, and archive (move to a different destination folder). The two triggers are if the AD user is deleted and, optionally, if the VHD is stale longer than X number of days, signifying the user has not logged in. Currently only works with traditional AD or Entra ADDS, but may expand to Entra in the future if requested. 
