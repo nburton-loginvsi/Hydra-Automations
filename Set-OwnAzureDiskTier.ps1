@@ -60,8 +60,8 @@ $PollIntervalSeconds = 10
 $PollTimeoutSeconds = 600
 
 # Use the Hydra PSCredential object. UserName must be the service principal app/client ID.
-# $HydraCredential = $global:Hydra_ServiceAccount_PSC
-$HydraCredential = Get-Credential
+$HydraCredential = $global:Hydra_ServiceAccount_PSC
+
 
 # =========================
 # Script logic below
