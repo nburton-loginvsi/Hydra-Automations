@@ -64,3 +64,9 @@ Utilize the Host Pool service account to add Hydra machines to a list of groups.
 **Cleanup-FSLogixProfiles.ps1**
 
 Used for cleaning up FSLogix profiles. Follow the instructions within the PS1. Can be used across multiple shares and utilize the Hydra service account. The main modes are report only, delete, and archive (move to a different destination folder). The two triggers are if the AD user is deleted and, optionally, if the VHD is stale longer than X number of days, signifying the user has not logged in. Currently only works with traditional AD or Entra ADDS, but may expand to Entra in the future if requested. 
+
+---
+
+**Set-OwnAzureDiskTier.ps1**
+
+Allows a VM to change its own disk tier on the fly. Specify the desired disk tier variable and use Hydra's PSC object / service account as the SP ID / secret. Ideally this will become a scripted action in the future that is API-driven vs running from the guest OS. 
