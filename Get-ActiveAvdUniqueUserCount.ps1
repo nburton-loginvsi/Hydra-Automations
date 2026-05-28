@@ -1,12 +1,12 @@
 #requires -Version 5.1
 
 <#
-    Counts unique active Azure Virtual Desktop users by UPN.
+    Counts unique Azure Virtual Desktop users by UPN.
 
     The script queries AVD user sessions from host pools in the current Azure
-    subscription by default, filters active sessions, de-dupes by UPN, and
-    prints the count. Use -AllSubscriptions to sweep every enabled subscription
-    visible to the current Az context.
+    subscription by default, filters active and disconnected sessions, de-dupes
+    by UPN, and prints the count. Use -AllSubscriptions to sweep every enabled
+    subscription visible to the current Az context.
 
     Examples:
         .\Get-ActiveAvdUniqueUserCount.ps1
@@ -22,7 +22,7 @@ param(
     [switch]$AllSubscriptions,
 
     [ValidateNotNullOrEmpty()]
-    [string[]]$SessionState = @('Active'),
+    [string[]]$SessionState = @('Active', 'Disconnected'),
 
     [switch]$ShowSessions,
 
@@ -117,7 +117,7 @@ if (-not $targetSubscriptionIds -or $targetSubscriptionIds.Count -eq 0) {
     throw "No target subscriptions found."
 }
 
-$activeSessions = foreach ($subId in $targetSubscriptionIds) {
+$matchingSessions = foreach ($subId in $targetSubscriptionIds) {
     Write-Verbose "Querying host pools in subscription $subId"
 
     try {
@@ -169,7 +169,7 @@ $activeSessions = foreach ($subId in $targetSubscriptionIds) {
 }
 
 $uniqueUsers = @(
-    $activeSessions |
+    $matchingSessions |
         Group-Object -Property UserPrincipalName |
         Sort-Object -Property Name |
         ForEach-Object {
@@ -177,7 +177,7 @@ $uniqueUsers = @(
 
             [pscustomobject]@{
                 UserPrincipalName = $firstSession.DisplayUpn
-                ActiveSessionCount = $_.Count
+                MatchingSessionCount = $_.Count
             }
         }
 )
@@ -188,13 +188,13 @@ if ($QuietCount) {
 }
 
 if ($ShowSessions) {
-    $activeSessions |
+    $matchingSessions |
         Sort-Object -Property UserPrincipalName, SubscriptionId, ResourceGroupName, HostPoolName, SessionHostName |
         Format-Table -AutoSize UserPrincipalName, SessionState, SubscriptionId, ResourceGroupName, HostPoolName, SessionHostName
 
     Write-Host ''
 }
 
-$uniqueUsers | Format-Table -AutoSize UserPrincipalName, ActiveSessionCount
+$uniqueUsers | Format-Table -AutoSize UserPrincipalName, MatchingSessionCount
 Write-Host ''
-Write-Host "Unique active AVD users: $($uniqueUsers.Count)"
+Write-Host "Unique AVD users with session state [$($SessionState -join ', ')]: $($uniqueUsers.Count)"
