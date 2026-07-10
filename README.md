@@ -77,7 +77,7 @@ Allows a VM to change its own disk tier on the fly. Specify the desired disk tie
 
 Use these to automatically set tags for the OS Version and AVD Agent Versions. Hydra can then target the machines with (or without) these specific tags within Script Schedules. This can be helpful for keeping AVD Agents and OS updated.
 
---
+---
 
 **Invoke-HydraAgentAvdDeployment.ps1**
 
