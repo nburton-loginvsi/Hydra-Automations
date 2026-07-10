@@ -76,3 +76,32 @@ Allows a VM to change its own disk tier on the fly. Specify the desired disk tie
 **Set-OSVersionTag.ps1 and Set-AVDAgentVersionTag.ps1**
 
 Use these to automatically set tags for the OS Version and AVD Agent Versions. Hydra can then target the machines with (or without) these specific tags within Script Schedules. This can be helpful for keeping AVD Agents and OS updated.
+
+--
+
+**Invoke-HydraAgentAvdDeployment.ps1**
+
+This script deploys the Hydra agent to Azure Virtual Desktop session hosts using Azure VM Run Command. Useful for mass deployments of Hydra Agent without having to click through each Host Pool.
+
+Basic Usage
+powershell ./Invoke-HydraAgentAvdDeployment.ps1 -SubscriptionId "<subscription-id>" -HostPoolName "<host-pool-name>" -Uri "<hydra-app-uri>" -Secret "<hydra-secret>"
+
+Note the easiest way to grab the Hydra Secret is enable W365 in the Global Settings and check the enable W365 box in the Tenants section. Clicking Get Hydra Agent will show the full CLI installer. The -s argument contains the secret. 
+
+### Parameters
+
+| Parameter | Required | Default | Description |
+|---|---:|---|---|
+| `-SubscriptionId` | Yes | | Azure subscription ID containing the AVD host pool/session hosts. |
+| `-Uri` | Yes | | Hydra app URI, for example `demolab-lvsi-hydra.azurewebsites.net`. |
+| `-Secret` | Yes | | Hydra registration/install secret. |
+| `-HostPoolName` | No | All discovered host pools | One or more AVD host pool names to target. |
+| `-ResourceGroupName` | No | All resource groups | One or more resource groups to search for AVD host pools. |
+| `-InstallerPath` | No | `./ITPC-DeployHydraAgent.ps1` | Local path to the Hydra installer script. |
+| `-InstallerUri` | No | Hydra GitHub raw URL | Download URL used if the installer script is missing. |
+| `-PowerOn` | No | Off | Starts targeted VMs that are powered off before running the install. |
+| `-PowerOnTimeoutSeconds` | No | `300` | Max wait time for powered-on VMs to become ready for Run Command. |
+| `-RepairPerfmon` | No | Off | Runs `lodctr /R` via Azure Run Command before installing Hydra. |
+| `-AsJob` | No | Off | Starts Azure Run Command as jobs instead of waiting synchronously. |
+| `-StopOnError` | No | Off | Stops the batch on the first VM failure. By default, failures are logged and the script continues. |
+| `-WhatIf` | No | Off | Previews actions without starting VMs or running commands. |
