@@ -5,13 +5,8 @@ at the marker below to produce the standalone loginanalyzer-hydra.ps1.
 Run the generated file as SYSTEM or an administrator with no arguments.
 #>
 
-function OutputWriter {
-    param([AllowEmptyString()][string]$Message)
-    Write-Host $Message
-}
-
 # Opt in to recording process events for FUTURE logons (requires SYSTEM/admin).
-$EnableAuditing = $true
+$EnableAuditing = $false
 
 # Hydra supplies OutputWriter, which routes messages to the portal and local log.
 # Do not replace it with a console-only or in-memory approximation.
