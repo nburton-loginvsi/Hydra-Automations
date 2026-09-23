@@ -1,7 +1,8 @@
 ﻿#Requires -Version 5.1
 <#
-Hydra adapter source. Build-HydraAnalyzer.ps1 embeds the ControlUp analyzer
-at the marker below to produce the standalone loginanalyzer-hydra.ps1.
+Based on ControlUp's login analyzer retrofitted for Hydra use. 
+Set the EnableAuditing to $true to get UserInit and shell (Windows ready) load times
+
 Run the generated file as SYSTEM or an administrator with no arguments.
 #>
 
@@ -9,7 +10,7 @@ Run the generated file as SYSTEM or an administrator with no arguments.
 $EnableAuditing = $false
 
 # Hydra supplies OutputWriter, which routes messages to the portal and local log.
-# Do not replace it with a console-only or in-memory approximation.
+
 if (-not (Get-Command OutputWriter -ErrorAction SilentlyContinue)) {
     throw 'Hydra OutputWriter is unavailable. Run this script through Hydra so portal and local-file logging are available.'
 }
